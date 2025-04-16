@@ -1,10 +1,10 @@
 package com.revature.SpringDataJpa.entities;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Applicant {
@@ -18,6 +18,12 @@ public class Applicant {
     private String email;
 
     private String phone;
+
+    @OneToOne(mappedBy = "applicant", cascade = CascadeType.ALL)
+    private Resume resume;
+
+    @OneToMany(mappedBy = "applicant", cascade = CascadeType.ALL)
+    private List<Application> applications = new ArrayList<>();
 
     public Applicant() {
     }
@@ -58,6 +64,14 @@ public class Applicant {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public Resume getResume() {
+        return resume;
+    }
+
+    public void setResume(Resume resume) {
+        this.resume = resume;
     }
 
     @Override

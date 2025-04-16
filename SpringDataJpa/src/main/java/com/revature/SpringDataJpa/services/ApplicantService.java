@@ -1,7 +1,9 @@
 package com.revature.SpringDataJpa.services;
 
 import com.revature.SpringDataJpa.entities.Applicant;
+import com.revature.SpringDataJpa.entities.Resume;
 import com.revature.SpringDataJpa.repositories.ApplicantRepository;
+import com.revature.SpringDataJpa.repositories.ResumeRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,12 +12,18 @@ import java.util.List;
 public class ApplicantService {
 
     ApplicantRepository applicantRepository;
+    ResumeRepository resumeRepository;
 
-    public ApplicantService(ApplicantRepository applicantRepository) {
+    public ApplicantService(ApplicantRepository applicantRepository, ResumeRepository resumeRepository) {
         this.applicantRepository = applicantRepository;
+        this.resumeRepository = resumeRepository;
     }
 
     public Applicant createApplicant(Applicant applicant){
+        Resume resume = applicant.getResume();
+        if(resume != null){
+            resume.setApplicant(applicant);
+        }
         return this.applicantRepository.save(applicant);
     }
 
