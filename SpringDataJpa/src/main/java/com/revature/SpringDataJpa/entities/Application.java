@@ -1,6 +1,7 @@
 package com.revature.SpringDataJpa.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -16,6 +17,7 @@ public class Application {
 
     @ManyToOne
     @JoinColumn(name = "applicationId", nullable = false)
+    @JsonIgnore
     private Applicant applicant;
 
     public Application() {

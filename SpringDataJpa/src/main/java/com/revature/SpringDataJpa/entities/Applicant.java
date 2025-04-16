@@ -1,6 +1,7 @@
 package com.revature.SpringDataJpa.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -72,6 +73,15 @@ public class Applicant {
 
     public void setResume(Resume resume) {
         this.resume = resume;
+    }
+
+
+    public List<Application> getApplications() {
+        return applications;
+    }
+
+    public void setApplications(List<Application> applications) {
+        this.applications = applications;
     }
 
     @Override

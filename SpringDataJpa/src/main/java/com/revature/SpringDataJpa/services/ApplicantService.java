@@ -1,6 +1,7 @@
 package com.revature.SpringDataJpa.services;
 
 import com.revature.SpringDataJpa.entities.Applicant;
+import com.revature.SpringDataJpa.entities.Application;
 import com.revature.SpringDataJpa.entities.Resume;
 import com.revature.SpringDataJpa.repositories.ApplicantRepository;
 import com.revature.SpringDataJpa.repositories.ResumeRepository;
@@ -23,6 +24,10 @@ public class ApplicantService {
         Resume resume = applicant.getResume();
         if(resume != null){
             resume.setApplicant(applicant);
+        }
+        List<Application> applications = applicant.getApplications();
+        for(Application application : applications){
+            application.setApplicant(applicant);
         }
         return this.applicantRepository.save(applicant);
     }
