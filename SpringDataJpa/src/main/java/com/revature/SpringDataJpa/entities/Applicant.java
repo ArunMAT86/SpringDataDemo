@@ -26,6 +26,12 @@ public class Applicant {
     @OneToMany(mappedBy = "applicant", cascade = CascadeType.ALL)
     private List<Application> applications = new ArrayList<>();
 
+    @ManyToMany
+    @JoinTable(name = "applicant_jobs",
+    joinColumns = @JoinColumn(name = "applicantID"),
+            inverseJoinColumns = @JoinColumn(name = "jobId"))
+    private List<Jobs> jobs = new ArrayList<>();
+
     public Applicant() {
     }
 
@@ -82,6 +88,14 @@ public class Applicant {
 
     public void setApplications(List<Application> applications) {
         this.applications = applications;
+    }
+
+    public List<Jobs> getJobs() {
+        return jobs;
+    }
+
+    public void setJobs(List<Jobs> jobs) {
+        this.jobs = jobs;
     }
 
     @Override
