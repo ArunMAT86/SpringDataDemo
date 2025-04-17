@@ -8,6 +8,7 @@ import com.revature.SpringDataJpa.repositories.ResumeRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ApplicantService {
@@ -35,5 +36,10 @@ public class ApplicantService {
 
     public List<Applicant> getAllApplicant(){
         return this.applicantRepository.findAll();
+    }
+
+    public Optional<Applicant> getApplicantById(Integer applicant_Id){
+        return this.applicantRepository.findById(applicant_Id);
+
     }
 }
